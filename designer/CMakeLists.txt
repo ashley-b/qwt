@@ -18,6 +18,12 @@ else()
   target_link_libraries(qwt_designer_plugin PRIVATE qwt)
 endif()
 
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+  target_compile_features(qwt_designer_plugin PUBLIC cxx_std_17)
+else()
+  target_compile_features(qwt_designer_plugin PUBLIC cxx_std_11)
+endif()
+
 target_link_libraries(qwt_designer_plugin PUBLIC Qt${QT_VERSION_MAJOR}::Designer)
 
 set_target_properties(qwt_designer_plugin PROPERTIES

@@ -285,6 +285,12 @@ endif()
 
 add_library(qwt_objects OBJECT ${SOURCES} ${HEADERS})
 
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+  target_compile_features(qwt_objects PUBLIC cxx_std_17)
+else()
+  target_compile_features(qwt_objects PUBLIC cxx_std_11)
+endif()
+
 target_include_directories(qwt_objects INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/classincludes>
